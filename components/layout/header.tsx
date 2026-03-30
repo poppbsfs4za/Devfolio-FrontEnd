@@ -13,7 +13,7 @@ export function Header() {
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="text-lg font-semibold text-slate-900">
-          Devfolio
+          Kraiwit.W Devfolio.
         </Link>
         <nav className="flex items-center gap-5 text-sm text-slate-600">
           {items.map((item) => (

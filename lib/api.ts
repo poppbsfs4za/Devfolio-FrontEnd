@@ -6,6 +6,7 @@ const ROUTES = {
   publicPosts: '/api/v1/posts',
   postBySlug: (slug: string) => `/api/v1/posts/${slug}`,
   login: '/api/v1/auth/login',
+  logout: '/api/v1/auth/logout',
   profile: '/api/v1/profile',
   tags: '/api/v1/tags',
   adminPosts: '/api/v1/admin/posts',
@@ -37,6 +38,7 @@ export class ApiError extends Error {
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
+    credentials: 'include',
     headers: {
       ...(init?.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
       ...(init?.headers || {}),
@@ -90,20 +92,22 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   return result.data;
 }
 
-export async function login(email: string, password: string): Promise<string> {
-  const result = await request<{ data: { access_token: string } }>(ROUTES.login, {
+export async function login(email: string, password: string) {
+  return request<{ data: { access_token: string } }>(ROUTES.login, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
   });
-
-  return result.data.access_token;
 }
 
-export async function getProfile(token: string) {
+export async function logout() {
+  return request<{ data: { message: string } }>(ROUTES.logout, {
+    method: 'POST',
+  });
+}
+
+export async function getProfile() {
   return request<{ data: unknown }>(ROUTES.profile, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    method: 'GET',
   });
 }
 
@@ -112,63 +116,45 @@ export async function getTags(): Promise<Tag[]> {
   return result.data ?? [];
 }
 
-export async function createPost(token: string, payload: Record<string, unknown>) {
+export async function createPost(payload: Record<string, unknown>) {
   return request<{ data: Post }>(ROUTES.adminPosts, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     body: JSON.stringify(payload),
   });
 }
 
-export async function updatePost(token: string, id: string, payload: Record<string, unknown>) {
+export async function updatePost(id: string, payload: Record<string, unknown>) {
   return request<{ data: Post }>(ROUTES.adminPostById(id), {
     method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     body: JSON.stringify(payload),
   });
 }
 
-export async function deletePost(token: string, id: string) {
+export async function deletePost(id: string) {
   return request<void>(ROUTES.adminPostById(id), {
     method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 }
 
-export async function uploadCover(token: string, file: File) {
+export async function uploadCover(file: File) {
   const formData = new FormData();
   formData.append('file', file);
 
   return request<{ data?: { url?: string; filename?: string } }>(ROUTES.uploadCover, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     body: formData,
   });
 }
 
-export async function getAdminPostById(token: string, id: string) {
+export async function getAdminPostById(id: string) {
   return request<{ data: Post }>(ROUTES.adminPostById(id), {
     method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 }
 
-export async function getAdminPosts(token: string) {
+export async function getAdminPosts() {
   return request<{ data: Post[] }>(ROUTES.adminPosts, {
     method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 }
 

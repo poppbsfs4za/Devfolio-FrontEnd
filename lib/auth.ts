@@ -1,20 +1,31 @@
-const TOKEN_KEY = 'token';
+const COOKIE_NAME = 'devfolio_token';
 
-export function getToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  return window.localStorage.getItem(TOKEN_KEY);
+function isBrowser() {
+  return typeof window !== 'undefined';
 }
 
-export function setToken(token: string) {
-  if (typeof window === 'undefined') return;
-  window.localStorage.setItem(TOKEN_KEY, token);
-}
+export function getCookie(name: string): string | null {
+  if (!isBrowser()) return null;
 
-export function removeToken() {
-  if (typeof window === 'undefined') return;
-  window.localStorage.removeItem(TOKEN_KEY);
+  const cookies = document.cookie.split(';').map((item) => item.trim());
+  const prefix = `${name}=`;
+
+  for (const cookie of cookies) {
+    if (cookie.startsWith(prefix)) {
+      return decodeURIComponent(cookie.slice(prefix.length));
+    }
+  }
+
+  return null;
 }
 
 export function isAuthenticated(): boolean {
-  return !!getToken();
+  return !!getCookie(COOKIE_NAME);
 }
+
+export function clearAuthCookieClientSide() {
+  if (!isBrowser()) return;
+  document.cookie = `${COOKIE_NAME}=; Path=/; Max-Age=0; SameSite=Lax`;
+}
+
+export const AUTH_COOKIE_NAME = COOKIE_NAME;
