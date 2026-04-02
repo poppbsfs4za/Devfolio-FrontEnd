@@ -1,6 +1,14 @@
 import { Post, Tag } from '@/lib/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080';
+const BROWSER_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+const SERVER_API_BASE_URL =
+  process.env.INTERNAL_API_BASE_URL || 'http://localhost:3000';
+
+function getApiBaseUrl() {
+  return typeof window === 'undefined'
+    ? SERVER_API_BASE_URL
+    : BROWSER_API_BASE_URL;
+}
 
 const ROUTES = {
   publicPosts: '/api/v1/posts',
@@ -36,7 +44,9 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${path}`, {
+  const apiBaseUrl = getApiBaseUrl();
+
+  const res = await fetch(`${apiBaseUrl}${path}`, {
     ...init,
     credentials: 'include',
     headers: {
@@ -131,7 +141,7 @@ export async function updatePost(id: string, payload: Record<string, unknown>) {
 }
 
 export async function deletePost(id: string) {
-  return request<void>(ROUTES.adminPostById(id), {
+  return request(ROUTES.adminPostById(id), {
     method: 'DELETE',
   });
 }
@@ -157,5 +167,3 @@ export async function getAdminPosts() {
     method: 'GET',
   });
 }
-
-export { API_BASE_URL };
