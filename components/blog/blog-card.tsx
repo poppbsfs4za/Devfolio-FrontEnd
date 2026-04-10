@@ -46,7 +46,7 @@ export function BlogCard({ post }: { post: Post }) {
           </div>
 
           <div className="h-40 w-full shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:h-28 sm:w-40">
-            {normalizeUploadUrl(post.cover_image_url) ? (
+            {post.cover_image_url ? (
               <img
                 src={normalizeUploadUrl(post.cover_image_url)}
                 alt={post.title}

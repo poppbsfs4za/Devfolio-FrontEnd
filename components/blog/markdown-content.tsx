@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { slugifyHeading } from '@/lib/markdown';
+import { normalizeUploadUrl } from '@/lib/normalize-upload-url';
 
 type Props = {
   content: string;
@@ -72,7 +73,7 @@ export function MarkdownContent({ content }: Props) {
           code: ({ children }) => <code>{children}</code>,
           img: ({ src, alt }) => (
             <img
-              src={src || ''}
+              src={normalizeUploadUrl(typeof src === 'string' ? src : '')}
               alt={alt || ''}
               className="my-6 w-full rounded-2xl border border-slate-200"
             />
