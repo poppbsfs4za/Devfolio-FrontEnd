@@ -6,6 +6,7 @@ import { TagBadge } from '@/components/blog/tag-badge';
 import { MarkdownContent } from '@/components/blog/markdown-content';
 import { TocSidebar } from '@/components/blog/toc-sidebar';
 import { extractToc } from '@/lib/markdown';
+import { normalizeUploadUrl } from '@/lib/normalize-upload-url';
 
 export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug).catch(() => null);
@@ -27,7 +28,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
             <div className="border-b border-slate-200 bg-slate-100">
               {post.cover_image_url ? (
                 <img
-                  src={post.cover_image_url}
+                  src={normalizeUploadUrl(post.cover_image_url)}
                   alt={post.title}
                   className="h-[260px] w-full object-cover sm:h-[360px] lg:h-[420px]"
                 />

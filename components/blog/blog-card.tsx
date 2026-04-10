@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Post } from "@/lib/types";
+import { normalizeUploadUrl } from '@/lib/normalize-upload-url';
+
 
 export function BlogCard({ post }: { post: Post }) {
   return (
@@ -46,7 +48,7 @@ export function BlogCard({ post }: { post: Post }) {
           <div className="h-40 w-full shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 sm:h-28 sm:w-40">
             {post.cover_image_url ? (
               <img
-                src={post.cover_image_url}
+                src={normalizeUploadUrl(post.cover_image_url)}
                 alt={post.title}
                 className="h-full w-full object-cover"
               />

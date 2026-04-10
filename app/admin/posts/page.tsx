@@ -10,6 +10,7 @@ import {
   handleUnauthorized,
 } from '@/lib/admin-api';
 import { LogoutButton } from '@/components/admin/logout-button';
+import { normalizeUploadUrl } from '@/lib/normalize-upload-url';
 
 export default function AdminPostsPage() {
   const router = useRouter();
@@ -106,7 +107,7 @@ export default function AdminPostsPage() {
                   <div className="h-16 w-24 overflow-hidden rounded border border-slate-200 bg-slate-100">
                     {post.cover_image_url ? (
                       <img
-                        src={post.cover_image_url}
+                        src={normalizeUploadUrl(post.cover_image_url)}
                         alt={post.title}
                         className="h-full w-full object-cover"
                       />
