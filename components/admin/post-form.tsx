@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Post } from '@/lib/types';
+import { normalizeUploadUrl } from '@/lib/normalize-upload-url';
 
 type Props = {
   mode: 'create' | 'edit';
@@ -26,7 +27,9 @@ export function PostForm({ mode, initialPost, postId }: Props) {
   const [slug, setSlug] = useState(initialPost?.slug || '');
   const [summary, setSummary] = useState(initialPost?.summary || '');
   const [content, setContent] = useState(initialPost?.content || '');
-  const [coverImageUrl, setCoverImageUrl] = useState(initialPost?.cover_image_url || '');
+  const [coverImageUrl, setCoverImageUrl] = useState(
+    normalizeUploadUrl(initialPost?.cover_image_url || "")
+  );
   const [status, setStatus] = useState(initialPost?.status || 'draft');
   const [tagText, setTagText] = useState(
     (initialPost?.tags || []).map((tag) => tag.name).join(', ')
@@ -91,13 +94,14 @@ export function PostForm({ mode, initialPost, postId }: Props) {
       setMessage('Uploading cover image...');
 
       const result = await uploadCover(file);
-      const url = result?.data?.url;
+      const rawUrl = result?.data?.url;
 
-      if (!url) {
-        throw new Error('Upload completed but no URL was returned');
+      if (!rawUrl) {
+        throw new Error("Upload completed but no URL was returned");
       }
 
-      setCoverImageUrl(url);
+      const normalizedUrl = normalizeUploadUrl(rawUrl);
+      setCoverImageUrl(normalizedUrl);
       setMessage('Cover image uploaded successfully.');
     } catch (err) {
       if (isUnauthorizedError(err)) {
@@ -177,7 +181,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
         slug,
         summary,
         content,
-        cover_image_url: coverImageUrl,
+        cover_image_url: normalizeUploadUrl(coverImageUrl),
         status,
         tags: tagNames,
       };
@@ -291,7 +295,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
           <label className="text-sm font-medium text-slate-700">Cover Image URL</label>
           <Input
             value={coverImageUrl}
-            onChange={(e) => setCoverImageUrl(e.target.value)}
+            onChange={(e) => setCoverImageUrl(normalizeUploadUrl(e.target.value))}
             placeholder="https://..."
           />
         </div>
