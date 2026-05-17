@@ -8,9 +8,9 @@ export function AdminPageHeader({ title, description, action }: Props) {
   return (
     <div className="mb-8 flex items-start justify-between gap-4">
       <div>
-        <h1 className="text-3xl font-bold">{title}</h1>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">{title}</h1>
         {description ? (
-          <p className="mt-2 text-sm text-slate-600">{description}</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{description}</p>
         ) : null}
       </div>
 

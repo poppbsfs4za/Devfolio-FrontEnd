@@ -18,14 +18,14 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
     <section className="section-gap">
       <div className="container-page">
         <div className="mb-8">
-          <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-900">
+          <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">
             ← Back to blog
           </Link>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_260px]">
           <article className="card overflow-hidden">
-            <div className="border-b border-slate-200 bg-slate-100">
+            <div className="border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800">
               {post.cover_image_url ? (
                 <img
                   src={normalizeUploadUrl(post.cover_image_url)}
@@ -33,9 +33,9 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
                   className="h-[260px] w-full object-cover sm:h-[360px] lg:h-[420px]"
                 />
               ) : (
-                <div className="flex h-[260px] w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 sm:h-[360px] lg:h-[420px]">
-                  <div className="text-center text-slate-400">
-                    <div className="mb-3 inline-flex rounded-full border border-slate-300 px-4 py-1 text-xs uppercase tracking-[0.2em]">
+                <div className="flex h-[260px] w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 sm:h-[360px] lg:h-[420px]">
+                  <div className="text-center text-slate-400 dark:text-slate-500">
+                    <div className="mb-3 inline-flex rounded-full border border-slate-300 px-4 py-1 text-xs uppercase tracking-[0.2em] dark:border-slate-700">
                       Cover Image
                     </div>
                     <p className="text-sm">No image available</p>
@@ -46,27 +46,27 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
 
             <div className="p-8 sm:p-10">
               <div className="space-y-6">
-                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
                   <span>{formatDate(post.published_at)}</span>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
                       post.status === 'published'
-                        ? 'bg-emerald-100 text-emerald-700'
+                        ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
                         : post.status === 'archived'
-                        ? 'bg-amber-100 text-amber-700'
-                        : 'bg-slate-900 text-white'
+                        ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                        : 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-950'
                     }`}
                   >
                     {post.status}
                   </span>
                 </div>
 
-                <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+                <h1 className="text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
                   {post.title}
                 </h1>
 
                 {post.summary ? (
-                  <p className="max-w-3xl text-lg leading-8 text-slate-600">
+                  <p className="max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">
                     {post.summary}
                   </p>
                 ) : null}

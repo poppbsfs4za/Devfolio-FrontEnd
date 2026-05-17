@@ -8,8 +8,8 @@ export function TocSidebar({ items }: Props) {
   if (!items.length) return null;
 
   return (
-    <aside className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
-      <p className="mb-3 text-sm font-semibold text-slate-900">เนื้อหา</p>
+    <aside className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+      <p className="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">เนื้อหา</p>
 
       <nav>
         <ul className="space-y-2">
@@ -17,7 +17,7 @@ export function TocSidebar({ items }: Props) {
             <li key={item.id} className={item.level === 3 ? 'pl-4' : ''}>
               <a
                 href={`#${item.id}`}
-                className="block border-l-2 border-transparent pl-3 text-sm text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                className="block border-l-2 border-transparent pl-3 text-sm text-slate-600 transition hover:border-slate-300 hover:text-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-slate-100"
               >
                 {item.text}
               </a>

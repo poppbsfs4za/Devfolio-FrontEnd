@@ -45,7 +45,7 @@ export default function EditPostPage() {
   if (loading) {
     return (
       <div className="container-page py-10">
-        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
           Loading...
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function EditPostPage() {
   if (!post) {
     return (
       <div className="container-page py-10">
-        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
           Post not found
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function EditPostPage() {
 
   return (
     <div className="container-page py-10">
-      <h1 className="mb-6 text-2xl font-semibold">Edit Post</h1>
+      <h1 className="mb-6 text-2xl font-semibold text-slate-900 dark:text-slate-100">Edit Post</h1>
       <PostForm mode="edit" initialPost={post} postId={postId} />
     </div>
   );

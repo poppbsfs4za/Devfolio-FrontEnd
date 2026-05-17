@@ -40,7 +40,7 @@ export function MarkdownContent({ content }: Props) {
   const getHeadingId = createHeadingIdFactory();
 
   return (
-    <div className="prose-content border-t border-slate-200 pt-8">
+    <div className="prose-content border-t border-slate-200 pt-8 dark:border-slate-800">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -75,7 +75,7 @@ export function MarkdownContent({ content }: Props) {
             <img
               src={normalizeUploadUrl(typeof src === 'string' ? src : '')}
               alt={alt || ''}
-              className="my-6 w-full rounded-2xl border border-slate-200"
+              className="my-6 w-full rounded-2xl border border-slate-200 dark:border-slate-800"
             />
           ),
         }}

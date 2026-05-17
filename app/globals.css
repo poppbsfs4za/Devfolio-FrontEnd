@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
 }
 
 .container-page {
@@ -19,11 +19,11 @@ body {
 }
 
 .card {
-  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
 }
 
 .prose-content p {
-  @apply mb-4 leading-7 text-slate-700;
+  @apply mb-4 leading-7 text-slate-700 dark:text-slate-300;
 }
 
 html {
@@ -32,6 +32,10 @@ html {
 
 .prose-content {
   color: #334155;
+}
+
+.dark .prose-content {
+  color: #cbd5e1;
 }
 
 .prose-content p {
@@ -48,6 +52,13 @@ html {
   font-weight: 700;
   line-height: 1.3;
   scroll-margin-top: 110px;
+}
+
+.dark .prose-content h1,
+.dark .prose-content h2,
+.dark .prose-content h3,
+.dark .prose-content h4 {
+  color: #f8fafc;
 }
 
 .prose-content h1 {
@@ -85,9 +96,19 @@ html {
   font-style: italic;
 }
 
+.dark .prose-content blockquote {
+  border-left-color: #475569;
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
 .prose-content strong {
   color: #0f172a;
   font-weight: 700;
+}
+
+.dark .prose-content strong {
+  color: #f8fafc;
 }
 
 .prose-content a {
@@ -96,12 +117,21 @@ html {
   text-underline-offset: 3px;
 }
 
+.dark .prose-content a {
+  color: #f8fafc;
+}
+
 .prose-content code {
   border-radius: 0.5rem;
   background: #f1f5f9;
   padding: 0.15rem 0.4rem;
   font-size: 0.95em;
   color: #0f172a;
+}
+
+.dark .prose-content code {
+  background: #1e293b;
+  color: #f8fafc;
 }
 
 .prose-content img {

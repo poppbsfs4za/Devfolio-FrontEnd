@@ -64,7 +64,7 @@ export default function AdminPostsPage() {
   if (loading) {
     return (
       <div className="container-page py-10">
-        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
           Loading...
         </div>
       </div>
@@ -74,23 +74,23 @@ export default function AdminPostsPage() {
   return (
     <div className="container-page py-10">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Manage Posts</h1>
+        <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">Manage Posts</h1>
 
         <div className="flex gap-3">
           <LogoutButton />
 
           <Link
             href="/admin/posts/new"
-            className="rounded bg-black px-4 py-2 text-white"
+            className="rounded bg-black px-4 py-2 text-white dark:bg-slate-100 dark:text-slate-950"
           >
             + New Post
           </Link>
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <table className="w-full text-sm">
-          <thead className="bg-slate-50 text-left">
+          <thead className="bg-slate-50 text-left text-slate-900 dark:bg-slate-800 dark:text-slate-100">
             <tr>
               <th className="px-4 py-3">Cover</th>
               <th className="px-4 py-3">Title</th>
@@ -102,9 +102,9 @@ export default function AdminPostsPage() {
 
           <tbody>
             {posts.map((post) => (
-              <tr key={post.id} className="border-t align-top">
+              <tr key={post.id} className="border-t border-slate-200 align-top text-slate-700 dark:border-slate-800 dark:text-slate-300">
                 <td className="px-4 py-3">
-                  <div className="h-16 w-24 overflow-hidden rounded border border-slate-200 bg-slate-100">
+                  <div className="h-16 w-24 overflow-hidden rounded border border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
                     {post.cover_image_url ? (
                       <img
                         src={normalizeUploadUrl(post.cover_image_url)}
@@ -112,7 +112,7 @@ export default function AdminPostsPage() {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-xs text-slate-400">
+                      <div className="flex h-full w-full items-center justify-center text-xs text-slate-400 dark:text-slate-500">
                         No image
                       </div>
                     )}
@@ -121,7 +121,7 @@ export default function AdminPostsPage() {
 
                 <td className="px-4 py-3">
                   <div className="font-medium">{post.title}</div>
-                  <div className="text-xs text-slate-500">{post.slug}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">{post.slug}</div>
                 </td>
 
                 <td className="px-4 py-3">{post.status}</td>
@@ -135,7 +135,7 @@ export default function AdminPostsPage() {
                 <td className="px-4 py-3 text-right space-x-2">
                   <Link
                     href={`/admin/posts/${post.id}/edit`}
-                    className="text-blue-600"
+                    className="text-blue-600 dark:text-blue-400"
                   >
                     Edit
                   </Link>
@@ -143,7 +143,7 @@ export default function AdminPostsPage() {
                   <button
                     onClick={() => handleDelete(post.id)}
                     disabled={deletingId === post.id}
-                    className="text-red-600 disabled:opacity-50"
+                    className="text-red-600 disabled:opacity-50 dark:text-red-400"
                   >
                     {deletingId === post.id ? 'Deleting...' : 'Delete'}
                   </button>

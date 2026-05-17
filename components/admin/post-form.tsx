@@ -209,30 +209,30 @@ export function PostForm({ mode, initialPost, postId }: Props) {
     <form onSubmit={handleSubmit} className="card space-y-5 p-6">
       <div className="grid gap-5 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Title</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Title</label>
           <Input value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Slug</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Slug</label>
           <Input value={slug} onChange={(e) => setSlug(e.target.value)} required />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700">Summary</label>
+        <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Summary</label>
         <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} />
       </div>
 
       <div className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <label className="text-sm font-medium text-slate-700">Content</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Content</label>
 
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => handleInsertHeading(2)}
-              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50"
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               + H2
             </button>
@@ -240,7 +240,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
             <button
               type="button"
               onClick={() => handleInsertHeading(3)}
-              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50"
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               + H3
             </button>
@@ -248,7 +248,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
             <button
               type="button"
               onClick={handleInsertBulletList}
-              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50"
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               + List
             </button>
@@ -256,7 +256,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
             <button
               type="button"
               onClick={handleInsertQuote}
-              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50"
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               + Quote
             </button>
@@ -271,10 +271,10 @@ export function PostForm({ mode, initialPost, postId }: Props) {
           required
         />
 
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-800/60">
           <div className="mb-3">
-            <p className="text-sm font-medium text-slate-800">Insert image into content</p>
-            <p className="text-xs text-slate-500">
+            <p className="text-sm font-medium text-slate-800 dark:text-slate-200">Insert image into content</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Upload an image and insert markdown automatically at the current cursor position.
             </p>
           </div>
@@ -285,14 +285,14 @@ export function PostForm({ mode, initialPost, postId }: Props) {
               accept="image/png,image/jpeg,image/webp,image/gif"
               onChange={(e) => handleUploadContentImage(e.target.files?.[0])}
             />
-            <p className="text-xs text-slate-500">Allowed: jpg, png, webp, gif. Max 5 MB.</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Allowed: jpg, png, webp, gif. Max 5 MB.</p>
           </div>
         </div>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Cover Image URL</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Cover Image URL</label>
           <Input
             value={coverImageUrl}
             onChange={(e) => setCoverImageUrl(normalizeUploadUrl(e.target.value))}
@@ -301,13 +301,13 @@ export function PostForm({ mode, initialPost, postId }: Props) {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Upload Cover Image</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Upload Cover Image</label>
           <Input
             type="file"
             accept="image/png,image/jpeg,image/webp,image/gif"
             onChange={(e) => handleUploadCover(e.target.files?.[0])}
           />
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Allowed: jpg, png, webp, gif. Max 5 MB.
           </p>
         </div>
@@ -315,22 +315,22 @@ export function PostForm({ mode, initialPost, postId }: Props) {
 
       {coverImageUrl ? (
         <div className="space-y-2">
-          <p className="text-sm font-medium text-slate-700">Cover Preview</p>
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Cover Preview</p>
           <img
             src={coverImageUrl}
             alt="Cover preview"
-            className="h-48 w-full max-w-md rounded-xl border border-slate-200 object-cover"
+            className="h-48 w-full max-w-md rounded-xl border border-slate-200 object-cover dark:border-slate-800"
           />
         </div>
       ) : null}
 
       <div className="grid gap-5 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Status</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Status</label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm"
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
             <option value="draft">Draft</option>
             <option value="published">Published</option>
@@ -339,7 +339,7 @@ export function PostForm({ mode, initialPost, postId }: Props) {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">Tags (comma separated)</label>
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Tags (comma separated)</label>
           <Input
             value={tagText}
             onChange={(e) => setTagText(e.target.value)}
@@ -349,13 +349,13 @@ export function PostForm({ mode, initialPost, postId }: Props) {
       </div>
 
       {message ? (
-        <div className="rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+        <div className="rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
           {message}
         </div>
       ) : null}
 
       {error ? (
-        <div className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <div className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:bg-rose-950 dark:text-rose-300">
           {error}
         </div>
       ) : null}

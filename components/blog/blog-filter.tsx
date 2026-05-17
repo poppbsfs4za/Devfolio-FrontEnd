@@ -30,7 +30,7 @@ export function BlogFilter({ posts }: { posts: Post[] }) {
         <select
           value={tag}
           onChange={(e) => setTag(e.target.value)}
-          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm"
+          className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
         >
           {tags.map((item) => (
             <option key={item} value={item}>
@@ -47,7 +47,7 @@ export function BlogFilter({ posts }: { posts: Post[] }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="card p-8 text-center text-sm text-slate-500">No posts match your current search or filter.</div>
+        <div className="card p-8 text-center text-sm text-slate-500 dark:text-slate-400">No posts match your current search or filter.</div>
       ) : null}
     </div>
   );

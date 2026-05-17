@@ -31,23 +31,23 @@ export default function LoginPageClient() {
 
   return (
     <section className="container-page max-w-xl py-16">
-      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-900">
+      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <h1 className="text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
           Admin Login
         </h1>
-        <p className="mt-3 text-slate-600">
+        <p className="mt-3 text-slate-600 dark:text-slate-400">
           Sign in to access the admin panel.
         </p>
 
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
               Email
             </label>
             <input
               id="email"
               type="email"
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-500"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@example.com"
@@ -57,13 +57,13 @@ export default function LoginPageClient() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
               Password
             </label>
             <input
               id="password"
               type="password"
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-slate-500"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-slate-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
@@ -73,7 +73,7 @@ export default function LoginPageClient() {
           </div>
 
           {error ? (
-            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
               {error}
             </div>
           ) : null}
@@ -81,7 +81,7 @@ export default function LoginPageClient() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-200"
           >
             {loading ? 'Signing in...' : 'Sign in'}
           </button>

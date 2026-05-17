@@ -11,12 +11,12 @@ export default function PortfolioPage() {
             <article key={project.title} className="card p-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
-                  <p className="text-sm leading-6 text-slate-600">{project.description}</p>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">{project.title}</h3>
+                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">{project.description}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <span key={tech} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700">
+                    <span key={tech} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                       {tech}
                     </span>
                   ))}

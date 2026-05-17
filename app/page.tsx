@@ -9,15 +9,15 @@ export default async function HomePage() {
 
   return (
     <div>
-      <section className="section-gap border-b border-slate-200 bg-white">
+      <section className="section-gap border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
         <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div className="space-y-6">
-            <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-600">Backend Engineer Portfolio</span>
+            <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-600 dark:bg-slate-800 dark:text-slate-300">Backend Engineer Portfolio</span>
             <div className="space-y-4">
-              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
                 Hi, I’m Kraiwit. I build backend systems and share engineering notes.
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-slate-600">
+              <p className="max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-400">
                 This frontend is built with Next.js and connected to the Go backend API you deployed on GCP.
               </p>
             </div>
@@ -29,7 +29,7 @@ export default async function HomePage() {
           <div className="card p-6">
             <div className="space-y-4">
               <h2 className="text-xl font-semibold">What’s included</h2>
-              <ul className="space-y-3 text-sm text-slate-600">
+              <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                 <li>• Public profile, about, portfolio, and blog pages</li>
                 <li>• Blog list and blog detail pages connected to backend API</li>
                 <li>• Search and tag filtering for blog posts</li>
@@ -48,7 +48,7 @@ export default async function HomePage() {
                 <BlogCard key={post.id} post={post} />
               ))}
             </div>
-          {posts.length === 0 ? <div className="card p-8 text-sm text-slate-500">No published posts found yet.</div> : null}
+          {posts.length === 0 ? <div className="card p-8 text-sm text-slate-500 dark:text-slate-400">No published posts found yet.</div> : null}
         </div>
       </section>
     </div>
