@@ -2,10 +2,11 @@ import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ThemeProvider } from '@/lib/theme';
+import { LanguageProvider } from '@/lib/language';
 
 export const metadata = {
   title: 'Devfolio',
-  description: 'Personal portfolio and blog frontend powered by Next.js and Go API.'
+  description: 'Personal portfolio and blog frontend powered by Next.js and Go API.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,9 +14,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <LanguageProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
