@@ -25,6 +25,7 @@ export type Post = {
 export type ProjectItem = {
   title: string;
   description: string;
+  highlights?: string[];
   tech: string[];
   link?: string;
 };
