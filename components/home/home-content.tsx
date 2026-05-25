@@ -17,18 +17,18 @@ export function HomeContent({ posts }: HomeContentProps) {
   return (
     <div>
       {/* Hero */}
-      <section className="section-gap border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <section className="border-b border-slate-200 bg-white py-10 dark:border-slate-800 dark:bg-slate-950 sm:py-14 lg:py-20">
+        <div className="container-page grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-12">
           {/* Animated hero column — typewriter title + staggered fade-ins */}
           <HomeHero />
 
-          {/* What you'll find card */}
-          <div className="card p-6">
+          {/* What you'll find card — full-width on mobile, beside hero on lg+ */}
+          <div className="card w-full p-6 sm:p-8">
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold">{h.whatYoullFind}</h2>
+              <h2 className="text-lg font-semibold sm:text-xl">{h.whatYoullFind}</h2>
               <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                 {h.bullets.map((bullet, i) => (
-                  <li key={i}>• {bullet}</li>
+                  <li key={i} className="min-w-0">• {bullet}</li>
                 ))}
               </ul>
             </div>
@@ -46,7 +46,7 @@ export function HomeContent({ posts }: HomeContentProps) {
             ))}
           </div>
           {posts.length === 0 ? (
-            <div className="card p-8 text-sm text-slate-500 dark:text-slate-400">
+            <div className="card w-full p-6 text-sm text-slate-500 sm:p-8 dark:text-slate-400">
               {h.noPosts}
             </div>
           ) : null}

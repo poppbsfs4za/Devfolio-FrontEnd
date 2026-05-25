@@ -11,7 +11,7 @@ import { useLanguage } from '@/lib/language';
  *
  * Behaviour:
  *  - Main greeting types out character-by-character (typewriter effect).
- *  - Tagline, description, socials, buttons, and personal line fade in
+ *  - Tagline, description, socials, personal chips, and buttons fade in
  *    sequentially after the title finishes.
  *  - When the user has `prefers-reduced-motion: reduce` set, all text is shown
  *    instantly — no animation at all.
@@ -89,9 +89,15 @@ export function HomeHero() {
       visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
     }`;
 
+  /**
+   * Split "💻 Hybrid work enjoyer · 🌍 Remote-friendly · …" into individual
+   * chip strings. Works for both EN and TH translation strings.
+   */
+  const chips = h.personalLine.split(' · ');
+
   return (
-    <div className="space-y-6">
-      <div className="space-y-4">
+    <div className="space-y-5 sm:space-y-6">
+      <div className="space-y-3 sm:space-y-4">
         {/*
          * Title: the visible text is typed character by character.
          * aria-label exposes the full string to assistive technology immediately
@@ -99,7 +105,7 @@ export function HomeHero() {
          */}
         <h1
           aria-label={fullTitle}
-          className="min-h-[2.75rem] max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:min-h-[3.5rem] sm:text-5xl"
+          className="min-h-[2.25rem] text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:min-h-[3rem] sm:text-4xl md:text-5xl"
         >
           <span aria-hidden="true">
             {typed}
@@ -109,17 +115,17 @@ export function HomeHero() {
           </span>
         </h1>
 
-        <p className={`max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-400 ${fade(showTagline)}`}>
+        <p className={`text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg sm:leading-8 ${fade(showTagline)}`}>
           {h.tagline}
         </p>
 
-        <p className={`max-w-2xl text-base leading-7 text-slate-500 dark:text-slate-500 ${fade(showDesc)}`}>
+        <p className={`text-sm leading-7 text-slate-500 dark:text-slate-500 sm:text-base ${fade(showDesc)}`}>
           {h.description}
         </p>
       </div>
 
       {/* Social links */}
-      <div className={`flex flex-wrap items-center gap-4 ${fade(showSocials)}`}>
+      <div className={`flex flex-wrap items-center gap-3 sm:gap-4 ${fade(showSocials)}`}>
         <a
           href="https://github.com/poppbsfs4za"
           target="_blank"
@@ -147,10 +153,17 @@ export function HomeHero() {
         </a>
       </div>
 
-      {/* Personal emoji line */}
-      <p className={`text-xs tracking-wide text-slate-400 dark:text-slate-600 ${fade(showPersonal)}`}>
-        {h.personalLine}
-      </p>
+      {/* Personal lifestyle chips — wraps cleanly on mobile */}
+      <div className={`flex flex-wrap gap-2 ${fade(showPersonal)}`}>
+        {chips.map((chip, i) => (
+          <span
+            key={i}
+            className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-400"
+          >
+            {chip}
+          </span>
+        ))}
+      </div>
 
       {/* CTA buttons */}
       <div className={`flex flex-wrap gap-3 ${fade(showButtons)}`}>
