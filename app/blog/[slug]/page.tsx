@@ -16,14 +16,14 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
 
   return (
     <section className="section-gap">
-      <div className="container-page">
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">
             ← Back to blog
           </Link>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
           <article className="card overflow-hidden">
             <div className="border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800">
               {post.cover_image_url ? (
@@ -66,7 +66,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
                 </h1>
 
                 {post.summary ? (
-                  <p className="max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">
+                  <p className="text-lg leading-8 text-slate-600 dark:text-slate-400">
                     {post.summary}
                   </p>
                 ) : null}
