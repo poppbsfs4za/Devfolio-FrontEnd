@@ -16,24 +16,26 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
 
   return (
     <section className="section-gap">
-      <div className="container-page">
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link href="/blog" className="text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">
             ← Back to blog
           </Link>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
           <article className="card overflow-hidden">
-            <div className="border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800">
+            <div className="border-b border-slate-200 bg-slate-950 dark:border-slate-800 dark:bg-slate-950">
               {post.cover_image_url ? (
-                <img
-                  src={normalizeUploadUrl(post.cover_image_url)}
-                  alt={post.title}
-                  className="h-[260px] w-full object-cover sm:h-[360px] lg:h-[420px]"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
+                  <img
+                    src={normalizeUploadUrl(post.cover_image_url)}
+                    alt={post.title}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
               ) : (
-                <div className="flex h-[260px] w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 sm:h-[360px] lg:h-[420px]">
+                <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
                   <div className="text-center text-slate-400 dark:text-slate-500">
                     <div className="mb-3 inline-flex rounded-full border border-slate-300 px-4 py-1 text-xs uppercase tracking-[0.2em] dark:border-slate-700">
                       Cover Image
@@ -66,7 +68,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
                 </h1>
 
                 {post.summary ? (
-                  <p className="max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-400">
+                  <p className="text-lg leading-8 text-slate-600 dark:text-slate-400">
                     {post.summary}
                   </p>
                 ) : null}
