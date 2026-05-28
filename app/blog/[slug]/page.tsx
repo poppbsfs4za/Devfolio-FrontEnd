@@ -25,15 +25,17 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
           <article className="card overflow-hidden">
-            <div className="border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-800">
+            <div className="border-b border-slate-200 bg-slate-950 dark:border-slate-800 dark:bg-slate-950">
               {post.cover_image_url ? (
-                <img
-                  src={normalizeUploadUrl(post.cover_image_url)}
-                  alt={post.title}
-                  className="h-[260px] w-full object-cover sm:h-[360px] lg:h-[420px]"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
+                  <img
+                    src={normalizeUploadUrl(post.cover_image_url)}
+                    alt={post.title}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
               ) : (
-                <div className="flex h-[260px] w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 sm:h-[360px] lg:h-[420px]">
+                <div className="flex aspect-video w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900">
                   <div className="text-center text-slate-400 dark:text-slate-500">
                     <div className="mb-3 inline-flex rounded-full border border-slate-300 px-4 py-1 text-xs uppercase tracking-[0.2em] dark:border-slate-700">
                       Cover Image
